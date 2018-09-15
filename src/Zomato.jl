@@ -3,8 +3,8 @@ __precompile__(true)
 module Zomato
 
 # External Imports
-import HTTP
-import JSON
+using HTTP
+using JSON
 
 # Module Exports
 export categories, cities, collections, cuisines, establishments, geocode
@@ -213,8 +213,17 @@ end
 
 """
 Get daily menu of a restaurant
+------------------------------
+Get daily menu using Zomato restaurant ID.
 
 See https://developers.zomato.com/documentation#!/restaurant/restaurant
+
+Arguments
+---------
+
+| Parameter   | Description                                  | Required | Parameter Type | Data Type |
+|-------------|----------------------------------------------|----------|----------------|-----------|
+| res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
 """
 function dailymenu(z::Z; kwargs...)
 	helper(z, "dailymenu", Dict(kwargs))
@@ -223,8 +232,17 @@ end
 
 """
 Get restaurant details
+----------------------
+Get detailed restaurant information using Zomato restaurant ID. Partner Access is required to access photos and reviews.
 
 See https://developers.zomato.com/documentation#!/restaurant/restaurant_0
+
+Arguments
+---------
+
+| Parameter   | Description                                  | Required | Parameter Type | Data Type |
+|-------------|----------------------------------------------|----------|----------------|-----------|
+| res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
 """
 function restaurant(z::Z; kwargs...)
 	helper(z, "restaurant", Dict(kwargs))
@@ -233,8 +251,19 @@ end
 
 """
 Get restaurant reviews
+----------------------
+Get restaurant reviews using the Zomato restaurant ID. Only 5 latest reviews are available under the Basic API plan.
 
 See https://developers.zomato.com/documentation#!/restaurant/reviews
+
+Arguments
+---------
+
+| Parameter   | Description                                  | Required | Parameter Type | Data Type |
+|-------------|----------------------------------------------|----------|----------------|-----------|
+| res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
+| start       | fetch results after this offset              | yes      | query          | Int       |
+| count       | number of max results to display             |          | query          | Int       |
 """
 function reviews(z::Z; kwargs...)
 	helper(z, "reviews", Dict(kwargs))
@@ -243,8 +272,16 @@ end
 
 """
 Get restaurant reviews
+---------------------
+The location input can be specified using Zomato location ID or coordinates. Cuisine / Establishment / Collection IDs can be obtained from respective api calls. Get up to 100 restaurants by changing the 'start' and 'count' parameters with the maximum value of count being 20. Partner Access is required to access photos and reviews.
+Examples:
+
+- To search for 'Italian' restaurants in 'Manhattan, New York City', set cuisines = 55, entity_id = 94741 and entity_type = zone
+- To search for 'cafes' in 'Manhattan, New York City', set establishment_type = 1, entity_type = zone and entity_id = 94741
+- Get list of all restaurants in 'Trending this Week' collection in 'New York City' by using entity_id = 280, entity_type = city and collection_id = 1
 
 See https://developers.zomato.com/documentation#!/restaurant/search
+
 """
 function search(z::Z; kwargs...)
 	helper(z, "search", Dict(kwargs))
