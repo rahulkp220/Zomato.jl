@@ -32,16 +32,6 @@ List of all restaurants categorized under a particular restaurant type can be ob
 
 See https://developers.zomato.com/documentation#!/common/categories
 
-Model Schema
-------------
-``` 
-[
-  {
-    "category_id": "3",
-    "category_name": "Nightlife"
-  }
-]
-```
 """
 function categories(z::Z)
 	helper(z, "categories", Dict())
@@ -60,22 +50,6 @@ If you already know the Zomato City ID, this API can be used to get other detail
 
 See https://developers.zomato.com/documentation#!/common/cities
 
-Model Schema
-------------
-```
-[
-  {
-    "id": "280",
-    "name": "New York City, NY",
-    "country_id": "216",
-    "country_name": "United States",
-    "is_state": "0",
-    "state_id": "103",
-    "state_name": "New York State",
-    "state_code": "NY"
-  }
-]
-```
 Arguments
 ---------
 
@@ -104,22 +78,6 @@ List of all restaurants listed in any particular Zomato Collection can be obtain
 
 See https://developers.zomato.com/documentation#!/common/collections
 
-Model Schema
------------
-```
-[
-  {
-    "collection_id": "1",
-    "title": "Trending this week",
-    "url": "https://www.zomato.com/new-york-city/top-restaurants",
-    "description": "The most popular restaurants in town this week",
-    "image_url": "https://b.zmtcdn.com/data/collections/e40960514831cb9b74c552d69eceee0f_1418387628_l.jpg",
-    "res_count": "30",
-    "share_url": "http://www.zoma.to/c-280/1"
-  }
-]
-```
-
 Arguments
 ---------
 
@@ -137,8 +95,25 @@ end
 
 """
 Get list of all cuisines in a city
+----------------------------------
+The location/city input can be provided in the following ways -
+
+- Using Zomato City ID
+- Using coordinates of any location within a city
+
+List of all restaurants serving a particular cuisine can be obtained using '/search' API with cuisine ID and location details
 
 See https://developers.zomato.com/documentation#!/common/cuisines
+
+
+Arguments
+---------
+
+| Parameter | Description                                     | Parameter Type | Data Type |
+|-----------|-------------------------------------------------|----------------|-----------|
+| city_id   | id of the city for which cuisines are needed    | query          | Int       |
+| lat       | latitude                                        | query          | Float     |
+| lon       | longitude                                       | query          | Float     |
 """
 function cuisines(z::Z; kwargs...)
 	helper(z, "cuisines", Dict(kwargs))
@@ -147,8 +122,26 @@ end
 
 """
 Get list of restaurant types in a city
+---------------------------------------
 
-See https://developers.zomato.com/documentation#!/common/establishments
+The location/City input can be provided in the following ways -
+
+- Using Zomato City ID
+- Using coordinates of any location within a city
+
+List of all restaurants categorized under a particular restaurant type can obtained using /Search API with Establishment ID and location details as inputs
+
+	See https://developers.zomato.com/documentation#!/common/establishments
+
+
+Arguments
+---------
+
+| Parameter | Description                                     | Parameter Type | Data Type |
+|-----------|-------------------------------------------------|----------------|-----------|
+| city_id   | id of the city 															    | query          | Int       |
+| lat       | latitude                                        | query          | Float     |
+| lon       | longitude                                       | query          | Float     |
 """
 function establishments(z::Z; kwargs...)
 	helper(z, "establishments", Dict(kwargs))
@@ -157,8 +150,19 @@ end
 
 """
 Get location details based on coordinates
+-----------------------------------------
+Get Foodie and Nightlife Index, list of popular cuisines and nearby restaurants around the given coordinates
 
 See https://developers.zomato.com/documentation#!/common/geocode
+
+Arguments
+---------
+
+| Parameter | Description                                     | Required | Parameter Type | Data Type |
+|-----------|-------------------------------------------------|----------|----------------|-----------|
+| lat       | latitude                                        | yes      | query          | Float     |
+| lon       | longitude                                       | yes      | query          | Float     |
+
 """
 function geocode(z::Z; kwargs...)
 	helper(z, "geocode", Dict(kwargs))
@@ -167,8 +171,18 @@ end
 
 """
 Get zomato location details
+---------------------------
+Get Foodie Index, Nightlife Index, Top Cuisines and Best rated restaurants in a given location
 
 See https://developers.zomato.com/documentation#!/location/location_details
+
+Arguments
+---------
+
+| Parameter   | Description                                     | Required | Parameter Type | Data Type |
+|-------------|-------------------------------------------------|----------|----------------|-----------|
+| entity_id   | location id obtained from locations api         | yes      | query          | Int       |
+| entity_type | location type obtained from locations api       | yes      | query          | String    |
 """
 function location_details(z::Z; kwargs...)
 	helper(z, "location_details", Dict(kwargs))
@@ -177,8 +191,20 @@ end
 
 """
 Search for locations
+--------------------
+Search for Zomato locations by keyword. Provide coordinates to get better search results
 
 See https://developers.zomato.com/documentation#!/location/locations
+
+Arguments
+---------
+
+| Parameter   | Description                               | Required | Parameter Type | Data Type |
+|-------------|-------------------------------------------|----------|----------------|-----------|
+| query       | suggestion for location name              |          | query          | String    |
+| lat         | latitude                                  | yes      | query          | Float     |
+| lon         | longitude                                 | yes      | query          | Float     |
+| count       | number of max results to display          |          | query          | Int       |
 """
 function locations(z::Z; kwargs...)
 	helper(z, "locations", Dict(kwargs))
