@@ -1,6 +1,5 @@
 __precompile__(true)
 
-
 module Zomato
 
 # External Imports
@@ -14,7 +13,7 @@ export restaurant, reviews, search
 
 
 """
-Zomato
+Zomato Z struct
 """
 struct Z
 	api_key::String
@@ -174,13 +173,3 @@ end
 
 
 end # module
-
-
-
-
-
-
-
-
-
-
