@@ -2,7 +2,7 @@
 
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/rahulkp220/)
 
-# Zomato.jl
+# Zomato.jl [Currently WIP]
 An unofficial Julia wrapper for Zomato's API :fire:
 However, the official documentation can be reached [here](https://developers.zomato.com/documentation)
 
