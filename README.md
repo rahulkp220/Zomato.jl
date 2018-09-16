@@ -2,23 +2,27 @@
 
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/rahulkp220/)
 
-# Zomato.jl [Currently WIP]
+# Zomato.jl
+
 An unofficial Julia wrapper for Zomato's API :fire:
 However, the official documentation can be reached [here](https://developers.zomato.com/documentation)
 
 ### Installation
-```jl
-TODO
-```
 
-### Update
-```jl
-TODO
+```julia
+julia>]
+(v1.0) pkg> add Zomato
 ```
 
 ### How it works?
-```jl
-TODO
+
+```julia
+
+# In the works,
+# needs julia way of doing things
+julia> z = Zomato.Z("api-key-here")
+julia> Zomato.categories(z)
+
 ```
 
 ### Facing issues? :scream:
