@@ -41,15 +41,18 @@ Dict{String,Any} with 4 entries:
 Each function has an extensive API documentation, a sample of which is given below.
 
 ```
-help?> Main.Zomato.cities
+help?> Zomato.cities
   Get city details
   ==================
 
-  Find the Zomato ID and other details for a city . You can obtain the Zomato City ID in one of the following ways:
+  Find the Zomato ID and other details for a city . 
+  You can obtain the Zomato City ID in one of the following ways:
 
-    •    City Name in the Search Query - Returns list of cities matching the query
+    •    City Name in the Search Query - 
+    Returns list of cities matching the query
 
-    •    Using coordinates - Identifies the city details based on the coordinates of any location inside a city
+    •    Using coordinates - 
+    Identifies the city details based on the coordinates of any location inside a city
 
   If you already know the Zomato City ID, this API can be used to get other details of the city.
 
