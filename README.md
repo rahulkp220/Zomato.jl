@@ -15,13 +15,56 @@ julia>]
 ```
 
 ### How it works?
+As per Zomato's official guidelines, access to restaurant information and search on Zomato is limited to 1000 calls per day. Hence the limit should be kept in mind.
 
 ```julia
+julia> z = Zomato.Z("APIKEY")
+Zomato(https://developers.zomato.com/api/v2.1/)
 
-# In the works,
-# needs julia way of doing things
-julia> z = Zomato.Z("api-key-here")
+# check out categories
 julia> Zomato.categories(z)
+Dict{String,Any} with 1 entry:
+  "categories" => Any[Dict{String,Any}("categories"=>Dict{String,Any}("name"=>"Delivery","id"=>1)), Dict{String,Any}("categories"=>Dict{String,Any}("name"=>…
+
+# check out city details
+julia> Zomato.cities(z, q="london")
+Dict{String,Any} with 4 entries:
+  "location_suggestions" => Any[Dict{String,Any}("is_state"=>0,"state_name"=>"England and Wales","name"=>"London","id"=>61,"state_code"=>"England and Wales"…
+  "has_total"            => 0
+  "status"               => "success"
+  "has_more"             => 0
+
+```
+
+### Documentation
+
+Each function has an extensive API documentation, a sample of which is given below.
+
+```
+help?> Main.Zomato.cities
+  Get city details
+  ==================
+
+  Find the Zomato ID and other details for a city . You can obtain the Zomato City ID in one of the following ways:
+
+    •    City Name in the Search Query - Returns list of cities matching the query
+
+    •    Using coordinates - Identifies the city details based on the coordinates of any location inside a city
+
+  If you already know the Zomato City ID, this API can be used to get other details of the city.
+
+  See https://developers.zomato.com/documentation#!/common/cities
+
+  Arguments
+  ===========
+
+Parameter                      Description Parameter Type Data Type
+––––––––– –––––––––––––––––––––––––––––––– –––––––––––––– –––––––––
+        q               query by city name          query    String
+      lat                         latitude          query     Float
+      lon                        longitude          query     Float
+ city_ids   comma separated city_id values          query    String
+    count number of max results to display          query       Int
 
 ```
 
