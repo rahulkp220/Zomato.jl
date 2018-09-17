@@ -30,7 +30,7 @@ Get list of categories
 ---------------------
 List of all restaurants categorized under a particular restaurant type can be obtained using /Search API with Category ID as inputs
 
-See https://developers.zomato.com/documentation#!/common/categories
+	See https://developers.zomato.com/documentation#!/common/categories
 
 """
 function categories(z::Z)
@@ -48,13 +48,13 @@ Find the Zomato ID and other details for a city . You can obtain the Zomato City
 
 If you already know the Zomato City ID, this API can be used to get other details of the city.
 
-See https://developers.zomato.com/documentation#!/common/cities
+	See https://developers.zomato.com/documentation#!/common/cities
 
 Arguments
 ---------
 
 | Parameter | Description                      | Parameter Type | Data Type |
-|-----------|----------------------------------|----------------|-----------|
+|:----------|:---------------------------------|:---------------|:----------|
 | q         | query by city name               | query          | String    |
 | lat       | latitude                         | query          | Float     |
 | lon       | longitude                        | query          | Float     |
@@ -76,13 +76,13 @@ Returns Zomato Restaurant Collections in a City. The location/City input can be 
 
 List of all restaurants listed in any particular Zomato Collection can be obtained using the '/search' API with Collection ID and Zomato City ID as the input
 
-See https://developers.zomato.com/documentation#!/common/collections
+	See https://developers.zomato.com/documentation#!/common/collections
 
 Arguments
 ---------
 
 | Parameter | Description                                     | Parameter Type | Data Type |
-|-----------|-------------------------------------------------|----------------|-----------|
+|:----------|:------------------------------------------------|:---------------|:----------|
 | city_id   | id of the city for which collections are needed | query          | Int       |
 | lat       | latitude                                        | query          | Float     |
 | lon       | longitude                                       | query          | Float     |
@@ -103,14 +103,14 @@ The location/city input can be provided in the following ways -
 
 List of all restaurants serving a particular cuisine can be obtained using '/search' API with cuisine ID and location details
 
-See https://developers.zomato.com/documentation#!/common/cuisines
+	See https://developers.zomato.com/documentation#!/common/cuisines
 
 
 Arguments
 ---------
 
 | Parameter | Description                                     | Parameter Type | Data Type |
-|-----------|-------------------------------------------------|----------------|-----------|
+|:----------|:------------------------------------------------|:---------------|:----------|
 | city_id   | id of the city for which cuisines are needed    | query          | Int       |
 | lat       | latitude                                        | query          | Float     |
 | lon       | longitude                                       | query          | Float     |
@@ -138,7 +138,7 @@ Arguments
 ---------
 
 | Parameter | Description                                     | Parameter Type | Data Type |
-|-----------|-------------------------------------------------|----------------|-----------|
+|:----------|:------------------------------------------------|:---------------|:----------|
 | city_id   | id of the city 															    | query          | Int       |
 | lat       | latitude                                        | query          | Float     |
 | lon       | longitude                                       | query          | Float     |
@@ -153,13 +153,13 @@ Get location details based on coordinates
 -----------------------------------------
 Get Foodie and Nightlife Index, list of popular cuisines and nearby restaurants around the given coordinates
 
-See https://developers.zomato.com/documentation#!/common/geocode
+	See https://developers.zomato.com/documentation#!/common/geocode
 
 Arguments
 ---------
 
 | Parameter | Description                                     | Required | Parameter Type | Data Type |
-|-----------|-------------------------------------------------|----------|----------------|-----------|
+|:----------|:------------------------------------------------|:---------|:---------------|:----------|
 | lat       | latitude                                        | yes      | query          | Float     |
 | lon       | longitude                                       | yes      | query          | Float     |
 
@@ -174,13 +174,13 @@ Get zomato location details
 ---------------------------
 Get Foodie Index, Nightlife Index, Top Cuisines and Best rated restaurants in a given location
 
-See https://developers.zomato.com/documentation#!/location/location_details
+	See https://developers.zomato.com/documentation#!/location/location_details
 
 Arguments
 ---------
 
 | Parameter   | Description                                     | Required | Parameter Type | Data Type |
-|-------------|-------------------------------------------------|----------|----------------|-----------|
+|:------------|:------------------------------------------------|:---------|:---------------|:----------|
 | entity_id   | location id obtained from locations api         | yes      | query          | Int       |
 | entity_type | location type obtained from locations api       | yes      | query          | String    |
 """
@@ -194,13 +194,13 @@ Search for locations
 --------------------
 Search for Zomato locations by keyword. Provide coordinates to get better search results
 
-See https://developers.zomato.com/documentation#!/location/locations
+	See https://developers.zomato.com/documentation#!/location/locations
 
 Arguments
 ---------
 
 | Parameter   | Description                               | Required | Parameter Type | Data Type |
-|-------------|-------------------------------------------|----------|----------------|-----------|
+|:------------|:------------------------------------------|:---------|:---------------|:----------|
 | query       | suggestion for location name              |          | query          | String    |
 | lat         | latitude                                  | yes      | query          | Float     |
 | lon         | longitude                                 | yes      | query          | Float     |
@@ -216,13 +216,13 @@ Get daily menu of a restaurant
 ------------------------------
 Get daily menu using Zomato restaurant ID.
 
-See https://developers.zomato.com/documentation#!/restaurant/restaurant
+	See https://developers.zomato.com/documentation#!/restaurant/restaurant
 
 Arguments
 ---------
 
 | Parameter   | Description                                  | Required | Parameter Type | Data Type |
-|-------------|----------------------------------------------|----------|----------------|-----------|
+|:------------|:---------------------------------------------|:---------|:---------------|:----------|
 | res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
 """
 function dailymenu(z::Z; kwargs...)
@@ -235,13 +235,13 @@ Get restaurant details
 ----------------------
 Get detailed restaurant information using Zomato restaurant ID. Partner Access is required to access photos and reviews.
 
-See https://developers.zomato.com/documentation#!/restaurant/restaurant_0
+	See https://developers.zomato.com/documentation#!/restaurant/restaurant_0
 
 Arguments
 ---------
 
 | Parameter   | Description                                  | Required | Parameter Type | Data Type |
-|-------------|----------------------------------------------|----------|----------------|-----------|
+|:------------|:---------------------------------------------|:---------|:---------------|:----------|
 | res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
 """
 function restaurant(z::Z; kwargs...)
@@ -254,13 +254,13 @@ Get restaurant reviews
 ----------------------
 Get restaurant reviews using the Zomato restaurant ID. Only 5 latest reviews are available under the Basic API plan.
 
-See https://developers.zomato.com/documentation#!/restaurant/reviews
+	See https://developers.zomato.com/documentation#!/restaurant/reviews
 
 Arguments
 ---------
 
 | Parameter   | Description                                  | Required | Parameter Type | Data Type |
-|-------------|----------------------------------------------|----------|----------------|-----------|
+|:------------|:---------------------------------------------|:---------|:---------------|:----------|
 | res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
 | start       | fetch results after this offset              | yes      | query          | Int       |
 | count       | number of max results to display             |          | query          | Int       |
@@ -280,7 +280,7 @@ Examples:
 - To search for 'cafes' in 'Manhattan, New York City', set establishment_type = 1, entity_type = zone and entity_id = 94741
 - Get list of all restaurants in 'Trending this Week' collection in 'New York City' by using entity_id = 280, entity_type = city and collection_id = 1
 
-See https://developers.zomato.com/documentation#!/restaurant/search
+	See https://developers.zomato.com/documentation#!/restaurant/search
 
 """
 function search(z::Z; kwargs...)

@@ -58,14 +58,13 @@ help?> Main.Zomato.cities
   Arguments
   ===========
 
-Parameter                      Description Parameter Type Data Type
-––––––––– –––––––––––––––––––––––––––––––– –––––––––––––– –––––––––
-        q               query by city name          query    String
-      lat                         latitude          query     Float
-      lon                        longitude          query     Float
- city_ids   comma separated city_id values          query    String
-    count number of max results to display          query       Int
-
+  Parameter Description                      Parameter Type Data Type
+  ––––––––– –––––––––––––––––––––––––––––––– –––––––––––––– –––––––––
+  q         query by city name               query          String
+  lat       latitude                         query          Float
+  lon       longitude                        query          Float
+  city_ids  comma separated city_id values   query          String
+  count     number of max results to display query          Int
 ```
 
 ### Facing issues? :scream:
