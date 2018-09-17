@@ -10,8 +10,8 @@ However, the official documentation can be reached [here](https://developers.zom
 ### Installation
 
 ```julia
-julia>]
-(v1.0) pkg> add Zomato
+julia> import Pkg
+julia> Pkg.clone("https://github.com/rahulkp220/Zomato.jl")
 ```
 
 ### How it works?
