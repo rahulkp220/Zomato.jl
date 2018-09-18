@@ -18,22 +18,24 @@ julia> Pkg.clone("https://github.com/rahulkp220/Zomato.jl")
 As per Zomato's official guidelines, access to restaurant information and search on Zomato is limited to 1000 calls per day. Hence the limit should be kept in mind.
 
 ```julia
-julia> z = Zomato.Z("APIKEY")
+# authenticate
+julia> auth = Zomato.Auth("API-KEY")
 Zomato(https://developers.zomato.com/api/v2.1/)
 
-# check out categories
-julia> Zomato.categories(z)
+# get the categories
+julia> Zomato.get(auth, Zomato.CategoriesAPIRoute)
+[ Info: fetching categories...
 Dict{String,Any} with 1 entry:
   "categories" => Any[Dict{String,Any}("categories"=>Dict{String,Any}("name"=>"Delivery","id"=>1)), Dict{String,Any}("categories"=>Dict{String,Any}("name"=>…
 
-# check out city details
-julia> Zomato.cities(z, q="london")
+# get city wise details
+julia> Zomato.get(auth, Zomato.CitiesAPIRoute,q="london")
+[ Info: fetching city details...
 Dict{String,Any} with 4 entries:
   "location_suggestions" => Any[Dict{String,Any}("is_state"=>0,"state_name"=>"England and Wales","name"=>"London","id"=>61,"state_code"=>"England and Wales"…
   "has_total"            => 0
   "status"               => "success"
   "has_more"             => 0
-
 ```
 
 ### Documentation
