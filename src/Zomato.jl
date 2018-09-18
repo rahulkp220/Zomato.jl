@@ -14,32 +14,32 @@ export Auth, get
 abstract type ZomatoAPIRoute end
 
 # Subtypes for ZomatoAPIRoute
-struct CategoriesAPIRoute <: ZomatoAPIRoute end
-struct CitiesAPIRoute <: ZomatoAPIRoute end
-struct CollectionsAPIRoute <: ZomatoAPIRoute end
-struct CuisinesAPIRoute <: ZomatoAPIRoute end
-struct EstablishmentsAPIRoute <: ZomatoAPIRoute end
-struct GeocodeAPIRoute <: ZomatoAPIRoute end
-struct LocationDetailsAPIRoute <: ZomatoAPIRoute end
-struct LocationsAPIRoute <: ZomatoAPIRoute end
-struct DailymenuAPIRoute <: ZomatoAPIRoute end
-struct RestaurantAPIRoute <: ZomatoAPIRoute end
-struct ReviewsAPIRoute <: ZomatoAPIRoute end
-struct SearchAPIRoute <: ZomatoAPIRoute end
+struct CategoriesAPIRoute 	<: ZomatoAPIRoute end
+struct CitiesAPIRoute 		<: ZomatoAPIRoute end
+struct CollectionsAPIRoute 	<: ZomatoAPIRoute end
+struct CuisinesAPIRoute 	<: ZomatoAPIRoute end
+struct EstablishmentsAPIRoute 	<: ZomatoAPIRoute end
+struct GeocodeAPIRoute 		<: ZomatoAPIRoute end
+struct LocationDetailsAPIRoute 	<: ZomatoAPIRoute end
+struct LocationsAPIRoute 	<: ZomatoAPIRoute end
+struct DailymenuAPIRoute 	<: ZomatoAPIRoute end
+struct RestaurantAPIRoute 	<: ZomatoAPIRoute end
+struct ReviewsAPIRoute 		<: ZomatoAPIRoute end
+struct SearchAPIRoute 		<: ZomatoAPIRoute end
 
 # Routes for specific Subtypes
-route(::Type{CategoriesAPIRoute}) = "categories"
-route(::Type{CitiesAPIRoute}) = "cities"
-route(::Type{CollectionsAPIRoute}) = "collections"
-route(::Type{CuisinesAPIRoute}) = "cuisines"
-route(::Type{EstablishmentsAPIRoute}) = "establishments"
-route(::Type{GeocodeAPIRoute}) = "geocode"
-route(::Type{LocationDetailsAPIRoute}) = "location_details"
-route(::Type{LocationsAPIRoute}) = "locations"
-route(::Type{DailymenuAPIRoute}) = "dailymenu"
-route(::Type{RestaurantAPIRoute}) = "restaurant"
-route(::Type{ReviewsAPIRoute}) = "reviews"
-route(::Type{SearchAPIRoute})	= "search"
+route(::Type{CategoriesAPIRoute}) 	= "categories"
+route(::Type{CitiesAPIRoute}) 		= "cities"
+route(::Type{CollectionsAPIRoute}) 	= "collections"
+route(::Type{CuisinesAPIRoute}) 	= "cuisines"
+route(::Type{EstablishmentsAPIRoute}) 	= "establishments"
+route(::Type{GeocodeAPIRoute}) 		= "geocode"
+route(::Type{LocationDetailsAPIRoute}) 	= "location_details"
+route(::Type{LocationsAPIRoute}) 	= "locations"
+route(::Type{DailymenuAPIRoute}) 	= "dailymenu"
+route(::Type{RestaurantAPIRoute}) 	= "restaurant"
+route(::Type{ReviewsAPIRoute}) 		= "reviews"
+route(::Type{SearchAPIRoute})		= "search"
 
 """
 Zomato Auth
