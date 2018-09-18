@@ -1,5 +1,5 @@
 using Zomato
 using Compat.Test
 
-# TODO
-@test typeof(Zomato.Z("apikey")) == Zomato.Z
+# More comprehensive tests needed!
+@test typeof(Zomato.Auth("apikey")) == Zomato.Auth

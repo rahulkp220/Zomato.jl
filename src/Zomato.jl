@@ -5,25 +5,65 @@ module Zomato
 # External Imports
 using HTTP
 using JSON
+import Base: @info
 
 # Module Exports
-export categories, cities, collections, cuisines, establishments, geocode
-export locations, location_details
-export restaurant, reviews, search
+export Auth, get
 
+# ZomatoAPIRoute 
+abstract type ZomatoAPIRoute end
+
+# Subtypes for ZomatoAPIRoute
+struct CategoriesAPIRoute 			<: ZomatoAPIRoute end
+struct CitiesAPIRoute 					<: ZomatoAPIRoute end
+struct CollectionsAPIRoute 			<: ZomatoAPIRoute end
+struct CuisinesAPIRoute 				<: ZomatoAPIRoute end
+struct EstablishmentsAPIRoute 	<: ZomatoAPIRoute end
+struct GeocodeAPIRoute 					<: ZomatoAPIRoute end
+struct LocationDetailsAPIRoute 	<: ZomatoAPIRoute end
+struct LocationsAPIRoute 				<: ZomatoAPIRoute end
+struct DailymenuAPIRoute 				<: ZomatoAPIRoute end
+struct RestaurantAPIRoute 			<: ZomatoAPIRoute end
+struct ReviewsAPIRoute 					<: ZomatoAPIRoute end
+struct SearchAPIRoute 					<: ZomatoAPIRoute end
+
+# Routes for specific Subtypes
+route(::Type{CategoriesAPIRoute}) 			= "categories"
+route(::Type{CitiesAPIRoute}) 					= "cities"
+route(::Type{CollectionsAPIRoute}) 			= "collections"
+route(::Type{CuisinesAPIRoute}) 				= "cuisines"
+route(::Type{EstablishmentsAPIRoute}) 	= "establishments"
+route(::Type{GeocodeAPIRoute}) 					= "geocode"
+route(::Type{LocationDetailsAPIRoute}) 	= "location_details"
+route(::Type{LocationsAPIRoute}) 				= "locations"
+route(::Type{DailymenuAPIRoute}) 				= "dailymenu"
+route(::Type{RestaurantAPIRoute}) 			= "restaurant"
+route(::Type{ReviewsAPIRoute}) 					= "reviews"
+route(::Type{SearchAPIRoute})						= "search"
 
 """
-Zomato Z struct
+Zomato Auth
 """
-struct Z
+struct Auth
 	api_key::String
-	base_url::String 
+	base_url::String
+	header::Dict{String, String}
 
-	Z(api_key,base_url="https://developers.zomato.com/api/v2.1/")=new(api_key, base_url)
+	# Inner Constructor
+	Auth(api_key,
+	base_url="https://developers.zomato.com/api/v2.1/",
+	header=Dict("Accept" => "application/json", "user-key"=> api_key))=new(api_key, base_url, header)
 end
 
-Base.show(io::IO, z::Z) = print(io, "Zomato(", z.base_url, ')')
+Base.show(io::IO, z::Auth) = print(io, "Zomato(", z.base_url, ')')
 
+"""
+Zomato API Error
+"""
+struct APIError <: Exception
+	code::Int16
+	status::HTTP.Response
+end
 
 """
 Get list of categories
@@ -33,8 +73,9 @@ List of all restaurants categorized under a particular restaurant type can be ob
 	See https://developers.zomato.com/documentation#!/common/categories
 
 """
-function categories(z::Z)
-	helper(z, "categories", Dict())
+function get(z::Auth, ::Type{CategoriesAPIRoute})
+	@info "fetching categories..."
+	helper(z, route(CategoriesAPIRoute), Dict())
 end
 
 
@@ -61,8 +102,9 @@ Arguments
 | city_ids  | comma separated city_id values   | query          | String    |
 | count     | number of max results to display | query          | Int       |
 """
-function cities(z::Z; kwargs...)
-	helper(z, "cities", Dict(kwargs))
+function get(z::Auth, ::Type{CitiesAPIRoute}; kwargs...)
+	@info "fetching city details..."
+	helper(z, route(CitiesAPIRoute), Dict(kwargs))
 end
 
 
@@ -88,8 +130,9 @@ Arguments
 | lon       | longitude                                       | query          | Float     |
 | count     | number of max results to display                | query          | Int       |
 """
-function collections(z::Z; kwargs...)
-	helper(z, "collections", Dict(kwargs))
+function get(z::Auth, ::Type{CollectionsAPIRoute}; kwargs...)
+	@info "fetching collections..."
+	helper(z, route(CollectionsAPIRoute), Dict(kwargs))
 end
 
 
@@ -115,8 +158,9 @@ Arguments
 | lat       | latitude                                        | query          | Float     |
 | lon       | longitude                                       | query          | Float     |
 """
-function cuisines(z::Z; kwargs...)
-	helper(z, "cuisines", Dict(kwargs))
+function get(z::Auth, ::Type{CuisinesAPIRoute};kwargs...)
+	@info "fetching cuisines... "
+	helper(z, route(CuisinesAPIRoute), Dict(kwargs))
 end
 
 
@@ -143,8 +187,9 @@ Arguments
 | lat       | latitude                                        | query          | Float     |
 | lon       | longitude                                       | query          | Float     |
 """
-function establishments(z::Z; kwargs...)
-	helper(z, "establishments", Dict(kwargs))
+function get(z::Auth, ::Type{EstablishmentsAPIRoute}; kwargs...)
+	@info "fetching establishments..."
+	helper(z, route(EstablishmentsAPIRoute), Dict(kwargs))
 end
 
 
@@ -164,8 +209,9 @@ Arguments
 | lon       | longitude                                       | yes      | query          | Float     |
 
 """
-function geocode(z::Z; kwargs...)
-	helper(z, "geocode", Dict(kwargs))
+function get(z::Auth, ::Type{GeocodeAPIRoute}; kwargs...)
+	@info "fetching geocode..."
+	helper(z, route(GeocodeAPIRoute), Dict(kwargs))
 end
 
 
@@ -184,8 +230,9 @@ Arguments
 | entity_id   | location id obtained from locations api         | yes      | query          | Int       |
 | entity_type | location type obtained from locations api       | yes      | query          | String    |
 """
-function location_details(z::Z; kwargs...)
-	helper(z, "location_details", Dict(kwargs))
+function get(z::Auth, ::Type{LocationDetailsAPIRoute}; kwargs...)
+	@info "fetching location details..."
+	helper(z, route(LocationDetailsAPIRoute), Dict(kwargs))
 end
 
 
@@ -206,8 +253,9 @@ Arguments
 | lon         | longitude                                 | yes      | query          | Float     |
 | count       | number of max results to display          |          | query          | Int       |
 """
-function locations(z::Z; kwargs...)
-	helper(z, "locations", Dict(kwargs))
+function get(z::Auth, ::Type{LocationsAPIRoute}; kwargs...)
+	@info "fetching locations..."
+	helper(z, route(LocationsAPIRoute), Dict(kwargs))
 end
 
 
@@ -225,8 +273,9 @@ Arguments
 |:------------|:---------------------------------------------|:---------|:---------------|:----------|
 | res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
 """
-function dailymenu(z::Z; kwargs...)
-	helper(z, "dailymenu", Dict(kwargs))
+function get(z::Auth, ::Type{DailymenuAPIRoute}; kwargs...)
+	@info "fetching dailymenu..."
+	helper(z, route(DailymenuAPIRoute), Dict(kwargs))
 end
 
 
@@ -244,8 +293,9 @@ Arguments
 |:------------|:---------------------------------------------|:---------|:---------------|:----------|
 | res_id      | id of restaurant whose details are requested | yes      | query          | Int       |
 """
-function restaurant(z::Z; kwargs...)
-	helper(z, "restaurant", Dict(kwargs))
+function get(z::Auth, ::Type{RestaurantAPIRoute}; kwargs...)
+	@info "fetching restaurant details..."
+	helper(z, route(RestaurantAPIRoute), Dict(kwargs))
 end
 
 
@@ -265,14 +315,15 @@ Arguments
 | start       | fetch results after this offset              | yes      | query          | Int       |
 | count       | number of max results to display             |          | query          | Int       |
 """
-function reviews(z::Z; kwargs...)
-	helper(z, "reviews", Dict(kwargs))
+function get(z::Auth, ::Type{ReviewsAPIRoute}; kwargs...)
+	@info "fetching restaurant reviews..."
+	helper(z, route(ReviewsAPIRoute), Dict(kwargs))
 end
 
 
 """
-Get restaurant reviews
----------------------
+Search Zomato Restaurants
+-------------------------
 The location input can be specified using Zomato location ID or coordinates. Cuisine / Establishment / Collection IDs can be obtained from respective api calls. Get up to 100 restaurants by changing the 'start' and 'count' parameters with the maximum value of count being 20. Partner Access is required to access photos and reviews.
 Examples:
 
@@ -283,22 +334,22 @@ Examples:
 	See https://developers.zomato.com/documentation#!/restaurant/search
 
 """
-function search(z::Z; kwargs...)
-	helper(z, "search", Dict(kwargs))
+function get(z::Auth, ::Type{SearchAPIRoute}; kwargs...)
+	@info "searching restaurants..."
+	helper(z, route(SearchAPIRoute), Dict(kwargs))
 end
 
 
 """
 HTTP Helper
 """
-function helper(z::Z, func::String, d::Dict)
-	header = Dict("Accept" => "application/json", "user-key"=> z.api_key)
+function helper(z::Auth, path::String, d::Dict)
 	try
 		query = query_builder(d)
-		response = HTTP.get(z.base_url * "$func?" * query, header)
+		response = HTTP.get(z.base_url * "$path?" * query, z.header)
 		return JSON.parse(String(response.body))
-	catch 
-		Dict()
+	catch error_response
+		throw(APIError(error_response.status, error_response.response))
 	end
 end
 
