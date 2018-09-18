@@ -43,7 +43,7 @@ Dict{String,Any} with 4 entries:
 Each function has an extensive API documentation, a sample of which is given below.
 
 ```
-help?> Zomato.cities
+help?>Zomato.get(Zomato.Auth, ::Type{Main.Zomato.CitiesAPIRoute}; kwargs...)
   Get city details
   ==================
 
