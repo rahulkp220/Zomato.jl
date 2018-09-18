@@ -23,13 +23,13 @@ julia> auth = Zomato.authenticate("API-KEY")
 Zomato(https://developers.zomato.com/api/v2.1/)
 
 # get the categories
-julia> Zomato.get(auth, Zomato.CategoriesAPI)
+julia> Zomato.get(auth, CategoriesAPI)
 [ Info: fetching categories...
 Dict{String,Any} with 1 entry:
   "categories" => Any[Dict{String,Any}("categories"=>Dict{String,Any}("name"=>"Delivery","id"=>1)), Dict{String,Any}("categories"=>Dict{String,Any}("name"=>…
 
 # get city wise details
-julia> Zomato.get(auth, Zomato.CitiesAPI,q="london")
+julia> Zomato.get(auth, CitiesAPI, q="london")
 [ Info: fetching city details...
 Dict{String,Any} with 4 entries:
   "location_suggestions" => Any[Dict{String,Any}("is_state"=>0,"state_name"=>"England and Wales","name"=>"London","id"=>61,"state_code"=>"England and Wales"…

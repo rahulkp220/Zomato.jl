@@ -20,18 +20,18 @@ export DailymenuAPI, RestaurantAPI, ReviewsAPI, SearchAPI
 abstract type ZomatoAPI end
 
 # Subtypes for ZomatoAPI
-struct CategoriesAPI	<: ZomatoAPI end
-struct CitiesAPI			<: ZomatoAPI end
-struct CollectionsAPI	<: ZomatoAPI end
-struct CuisinesAPI		<: ZomatoAPI end
-struct EstablishmentsAPI	<: ZomatoAPI end
-struct GeocodeAPI			<: ZomatoAPI end
-struct LocationDetailsAPI	<: ZomatoAPI end
-struct LocationsAPI		<: ZomatoAPI end
-struct DailymenuAPI		<: ZomatoAPI end
-struct RestaurantAPI	<: ZomatoAPI end
-struct ReviewsAPI			<: ZomatoAPI end
-struct SearchAPI			<: ZomatoAPI end
+struct CategoriesAPI      <: ZomatoAPI end
+struct CitiesAPI          <: ZomatoAPI end
+struct CollectionsAPI     <: ZomatoAPI end
+struct CuisinesAPI        <: ZomatoAPI end
+struct EstablishmentsAPI  <: ZomatoAPI end
+struct GeocodeAPI         <: ZomatoAPI end
+struct LocationDetailsAPI <: ZomatoAPI end
+struct LocationsAPI       <: ZomatoAPI end
+struct DailymenuAPI       <: ZomatoAPI end
+struct RestaurantAPI      <: ZomatoAPI end
+struct ReviewsAPI         <: ZomatoAPI end
+struct SearchAPI          <: ZomatoAPI end
 
 # Routes for specific Subtypes
 route(::Type{CategoriesAPI})      = "categories"
