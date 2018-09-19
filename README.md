@@ -18,6 +18,9 @@ julia> ]
 As per Zomato's official guidelines, access to restaurant information and search on Zomato is limited to 1000 calls per day. Hence the limit should be kept in mind.
 
 ```julia
+# Import package
+julia> using Zomato
+
 # authenticate
 julia> auth = Zomato.authenticate("API-KEY")
 Zomato(https://developers.zomato.com/api/v2.1/)
